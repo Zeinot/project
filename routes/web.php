@@ -1,11 +1,18 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VilleController;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('villes.index');
 });
+
+
+Route::get('/villes/', [VilleController::class, "index"])->name("villes.index");
+Route::get('/villes/create', [VilleController::class, "create"])->name("villes.create");
+Route::post('/villes', [VilleController::class, "store"])->name("villes.store");
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -17,4 +24,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

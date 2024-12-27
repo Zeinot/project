@@ -12,7 +12,8 @@ class VilleController extends Controller
      */
     public function index()
     {
-
+    $villes = Ville::paginate(2);
+    return view('villes.index', compact('villes'));
     }
 
     /**
@@ -20,7 +21,8 @@ class VilleController extends Controller
      */
     public function create()
     {
-        //
+
+        return view("villes.create");
     }
 
     /**
@@ -28,7 +30,13 @@ class VilleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Ville::create([
+            "name" => $request->name,
+            "content" => $request->input("content"),
+        ]);
+
+        return redirect(route("villes.index"));
     }
 
     /**
