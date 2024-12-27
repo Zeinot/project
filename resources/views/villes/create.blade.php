@@ -11,10 +11,10 @@
     @csrf
 
     <label>name</label><br/>
-    <input name="name"/><br/>
+    <input name="name" required/><br/>
 
     <label>content</label><br/>
-    <input name="content"/><br/>
+    <input name="content" required/><br/>
 
     <button type="submit">Add</button>
 </form>

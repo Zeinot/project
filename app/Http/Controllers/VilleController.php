@@ -30,11 +30,13 @@ class VilleController extends Controller
      */
     public function store(Request $request)
     {
-
-        Ville::create([
-            "name" => $request->name,
-            "content" => $request->input("content"),
+        $validated = $request->validate([
+            "name" => "required|min:3|max:255",
+            "content" => "required|min:3|max:255",
         ]);
+        Ville::create(
+            $validated
+        );
 
         return redirect(route("villes.index"));
     }
